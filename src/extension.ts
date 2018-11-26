@@ -13,6 +13,10 @@ export class LanguageDetection {
   private _statusBarItem: StatusBarItem =  window.createStatusBarItem(StatusBarAlignment.Left);
 
   private pretifyLanguage(currentLanguage: string): string {
+    if (currentLanguage === 'ABC') {
+      return 'EN';
+    }
+
     let lang = currentLanguage.toUpperCase().replace('\"', '');
 
     if (lang.match(/\./)) {
@@ -29,8 +33,7 @@ export class LanguageDetection {
         const langMatch = stdout.match(/"KeyboardLayout Name" = (.*);/);
         const currentLanguage = langMatch && langMatch[1];
         if (currentLanguage) {
-          const text = currentLanguage === 'ABC' ? 'EN' : this.pretifyLanguage(currentLanguage);
-          this._statusBarItem.text = text;
+          this._statusBarItem.text = this.pretifyLanguage(currentLanguage);
           this._statusBarItem.show();
         }
         if (err) {
