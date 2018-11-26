@@ -2,6 +2,12 @@
   "name": "language-status",
   "displayName": "language-status",
   "description": "Show the current language in the status bar",
+  "publisher": "Eyal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eyaleizenberg/vscode-language-status.git"
+  },
+  "icon": "./language.png",
   "version": "1.0.0",
   "engines": {
     "vscode": "^1.29.0"
