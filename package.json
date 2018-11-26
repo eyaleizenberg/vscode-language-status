@@ -2,7 +2,7 @@
   "name": "language-status",
   "displayName": "language-status",
   "description": "Show the current language in the status bar",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.29.0"
   },
