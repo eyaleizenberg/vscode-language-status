@@ -11,6 +11,17 @@ export function activate(context: ExtensionContext) {
 
 export class LanguageDetection {
   private _statusBarItem: StatusBarItem =  window.createStatusBarItem(StatusBarAlignment.Left);
+
+  private pretifyLanguage(currentLanguage: string): string {
+    let lang = currentLanguage.toUpperCase().replace('\"', '');
+
+    if (lang.match(/\./)) {
+      return lang.replace(/[^.]+$/, '');
+    }
+
+    return lang.slice(0, 2);
+  }
+
   public detect() {
     switch (process.platform) {
       case 'darwin':
@@ -18,7 +29,7 @@ export class LanguageDetection {
         const langMatch = stdout.match(/"KeyboardLayout Name" = (.*);/);
         const currentLanguage = langMatch && langMatch[1];
         if (currentLanguage) {
-          const text = currentLanguage === 'ABC' ? 'EN' : currentLanguage.slice(0, 2).toUpperCase();
+          const text = currentLanguage === 'ABC' ? 'EN' : this.pretifyLanguage(currentLanguage);
           this._statusBarItem.text = text;
           this._statusBarItem.show();
         }
