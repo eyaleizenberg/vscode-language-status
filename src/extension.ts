@@ -15,7 +15,6 @@ export class LanguageDetection {
     switch (process.platform) {
       case 'darwin':
       cp.exec('defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources', (err, stdout, stderr) => {
-        console.log('!!!!!!!!!', err, stdout, stderr);
         const langMatch = stdout.match(/"KeyboardLayout Name" = (.*);/);
         const currentLanguage = langMatch && langMatch[1];
         if (currentLanguage) {
